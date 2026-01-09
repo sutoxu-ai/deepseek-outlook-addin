@@ -49,37 +49,36 @@
     </bt:LongStrings>
   </Resources>
 
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
-    <Hosts>
-      <Host xsi:type="MailHost">
-        <DesktopFormFactor>
-          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
-            <OfficeTab id="TabDefault">
-              <Group id="DeepSeekGroup" label="GroupLabel">
-                <Control xsi:type="Button" id="DeepSeekComposeButton">
-                  <Label resid="ButtonLabel"/>
-                  <Tooltip resid="ButtonTooltip"/>
-                  <Icon>
-                    <bt:Image size="16" resid="Icon64"/>
-                    <bt:Image size="32" resid="Icon64"/>
-                    <bt:Image size="64" resid="Icon128"/>
-                    <bt:Image size="80" resid="Icon128"/>
-                  </Icon>
-                  <Supertip>
-                    <Title resid="ButtonLabel"/>
-                    <Description resid="AppDescription"/>
-                  </Supertip>
-                  <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>DeepSeekTaskpane</TaskpaneId>
-                    <SourceLocation resid="TaskpaneUrl"/>
-                    <SupportsPinning>true</SupportsPinning>
-                  </Action>
-                </Control>
-              </Group>
-            </OfficeTab>
-          </ExtensionPoint>
-        </DesktopFormFactor>
-      </Host>
-    </Hosts>
-  </VersionOverrides>
-</OfficeApp>
+ <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
+  <Hosts>
+    <Host xsi:type="MailHost">
+      <DesktopFormFactor>
+        <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+          <OfficeTab id="TabDefault">
+            <Group id="DeepSeekGroup" label="AI 助手">
+              <Control xsi:type="Button" id="DeepSeekComposeButton">
+                <Label resid="ButtonLabel"/>
+                <Tooltip resid="ButtonTooltip"/>
+                <Icon>
+                  <bt:Image size="16" resid="Icon64"/>
+                  <bt:Image size="32" resid="Icon64"/>
+                  <bt:Image size="64" resid="Icon128"/>
+                  <bt:Image size="80" resid="Icon128"/>
+                </Icon>
+                <Supertip>
+                  <Title resid="ButtonLabel"/>
+                  <Description resid="AppDescription"/>
+                </Supertip>
+                <Action xsi:type="ShowTaskpane">
+                  <TaskpaneId>DeepSeekTaskpane</TaskpaneId>
+                  <SourceLocation resid="TaskpaneUrl"/>
+                  <SupportsPinning>true</SupportsPinning>
+                </Action>
+              </Control>
+            </Group>
+          </OfficeTab>
+        </ExtensionPoint>
+      </DesktopFormFactor>
+    </Host>
+  </Hosts>
+</VersionOverrides>
