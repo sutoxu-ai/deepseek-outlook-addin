@@ -4,36 +4,56 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:type="MailApp">
 
+  <!-- 唯一 ID：必须是标准 GUID -->
   <Id>3f8b4e3b-1c1a-4e2f-96ae-2a01b8f6b8f9</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>sutoxu-ai</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="DeepSeek Test"/>
-  <Description DefaultValue="Test add-in for Outlook"/>
+  
+  <DisplayName DefaultValue="DeepSeek AI"/>
+  <Description DefaultValue="AI assistant for Outlook emails"/>
 
-  <!-- 必须是有效的 PNG 图标 -->
+  <!-- 图标：必须是 HTTPS + 返回 image/png -->
   <IconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
 
+  <!-- 支持的宿主 -->
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
 
+  <!-- 最低 API 要求 -->
   <Requirements>
     <Sets>
       <Set Name="MailBox" MinVersion="1.1"/>
     </Sets>
   </Requirements>
 
+  <!-- 关键：FormSettings 定义在哪些场景显示插件 -->
   <FormSettings>
+    
+    <!-- 阅读邮件时（右侧任务窗格） -->
     <Form xsi:type="ItemRead">
       <DesktopSettings>
         <SourceLocation DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
-        <RequestedHeight>250</RequestedHeight>
+        <RequestedHeight>350</RequestedHeight>
       </DesktopSettings>
     </Form>
+
+    <!-- 撰写/回复/转发邮件时（顶部按钮或任务窗格） -->
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
+        <!-- 注意：ItemEdit 不支持 RequestedHeight -->
+      </DesktopSettings>
+    </Form>
+
   </FormSettings>
 
+  <!-- 权限：ReadWriteItem 允许读取和修改邮件内容 -->
   <Permissions>ReadWriteItem</Permissions>
-  <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read"/>
+
+  <!-- 规则：在 Message 类型的邮件中，无论是 Read 还是 Edit 都激活 -->
+  <Rule xsi:type="ItemIs" ItemType="Message" FormType="ReadOrEdit"/>
+
 </OfficeApp>
