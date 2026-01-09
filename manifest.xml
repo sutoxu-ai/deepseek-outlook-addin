@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="MailApp">
+  <Id>c6f19b4-6d9a-4c57-9a60-123456789abc</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>DeepSeek Addin</ProviderName>
+  <DefaultLocale>zh-CN</DefaultLocale>
+  <DisplayName DefaultValue="DeepSeek 智能回复助手"/>
+  <Description DefaultValue="在 Outlook 中调用 DeepSeek 生成邮件回复"/>
+  <IconUrl DefaultValue="https://sutoux-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
+  <HighResolutionIconUrl DefaultValue="https://sutoux-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
+  <SupportUrl DefaultValue="https://sutoux-ai.github.io/deepseek-outlook-addin/"/>
+  <Hosts>
+    <Host Name="Mailbox"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.5">
+      <Set Name="Mailbox"/>
+    </Sets>
+  </Requirements>
+  <Permissions>ReadWriteMailbox</Permissions>
+  <FormSettings>
+    <Form xsi:type="ItemCompose">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://sutoux-ai.github.io/deepseek-outlook-addin/index.html"/>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+</OfficeApp>
