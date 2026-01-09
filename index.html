@@ -2,121 +2,46 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DeepSeek AI 助手</title>
-  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 16px;
       margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: #f5f5f5;
       color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
-    h1 {
-      font-size: 18px;
-      margin-bottom: 12px;
-    }
-    button {
-      background-color: #0078d4;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-    }
-    button:hover {
-      background-color: #106ebe;
-    }
-    #response {
-      margin-top: 16px;
-      padding: 12px;
+    .container {
       background: white;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      white-space: pre-wrap;
-      max-height: 300px;
-      overflow-y: auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      max-width: 400px;
     }
-    .loading {
+    h2 {
+      margin-top: 0;
       color: #0078d4;
+    }
+    p {
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
-  <h1>DeepSeek 智能回复助手</h1>
-  <button id="generateBtn">生成 AI 回复</button>
-  <div id="response">点击上方按钮，将自动生成回复草稿。</div>
+  <div class="container">
+    <h2>DeepSeek 智能助手</h2>
+    <p>✅ 插件已成功加载！</p>
+    <p>正在连接 AI 服务，请稍候...</p>
+  </div>
 
-  <script>
-    const DEEPSEEK_API_KEY = "sk-111526d35ea04d9a8321f9e59105fdaf";
-    const DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions";
-
-    Office.onReady((info) => {
-      if (info.host === Office.HostType.Outlook) {
-        document.getElementById('generateBtn').addEventListener('click', generateReply);
-      }
-    });
-
-    async function generateReply() {
-      const responseDiv = document.getElementById('response');
-      responseDiv.className = "loading";
-      responseDiv.textContent = "正在调用 DeepSeek AI...";
-
-      try {
-        const item = Office.context.mailbox.item;
-        const subject = item.subject || '无主题';
-        const body = await getBodyAsync();
-
-        const prompt = `你是一位专业的商务助理。请根据以下邮件内容，撰写一封礼貌、简洁的中文回复草稿。\n\n原始邮件主题：${subject}\n\n原始邮件正文：\n${body}\n\n请直接输出回复内容，不要解释。`;
-
-        const resp = await fetch(DEEPSEEK_API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${DEEPSEEK_API_KEY}`
-          },
-          body: JSON.stringify({
-            model: "deepseek-chat",
-            messages: [{ role: "user", content: prompt }],
-            stream: false
-          })
-        });
-
-        if (!resp.ok) {
-          throw new Error(`API 错误: ${resp.status} ${await resp.text()}`);
-        }
-
-        const data = await resp.json();
-        const replyText = data.choices[0].message.content.trim();
-
-        responseDiv.className = "";
-        responseDiv.textContent = replyText;
-
-        // 可选：自动插入到邮件正文中（取消注释即可）
-        // item.body.setAsync(replyText, { coercionType: Office.CoercionType.Text });
-      } catch (error) {
-        console.error("Error:", error);
-        responseDiv.className = "";
-        responseDiv.textContent = "❌ 生成失败：" + (error.message || "未知错误");
-      }
-    }
-
-    function getBodyAsync() {
-      return new Promise((resolve, reject) => {
-        Office.context.mailbox.item.body.getAsync(
-          Office.CoercionType.Text,
-          (result) => {
-            if (result.status === Office.AsyncResultStatus.Succeeded) {
-              resolve(result.value);
-            } else {
-              reject(new Error(result.error.message));
-            }
-          }
-        );
-      });
-    }
-  </script>
+  <!-- 可选：后续可在此添加 JS 调用你的后端 API -->
+  <!-- <script src="main.js"></script> -->
 </body>
 </html>
