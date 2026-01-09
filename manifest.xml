@@ -21,7 +21,7 @@
   <FormSettings>
     <Form xsi:type="ItemCompose">
       <DesktopSettings>
-        <SourceLocation DefaultValue="https://YOUR_HOST/web/index.html"/>
+        <SourceLocation DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/web/index.html"/>
       </DesktopSettings>
     </Form>
   </FormSettings>
