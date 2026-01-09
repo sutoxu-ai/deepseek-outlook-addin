@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- manifest.xml for DeepSeek Outlook Add-in -->
 <OfficeApp
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -7,76 +6,66 @@
   xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
   xsi:type="MailApp">
 
-  <!-- Unique ID (do not change unless necessary) -->
   <Id>3f8b4e3b-1c1a-4e2f-96ae-2a01b8f6b8f9</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>sutoxu-ai</ProviderName>
   <DefaultLocale>zh-CN</DefaultLocale>
-
   <DisplayName DefaultValue="DeepSeek 智能助手"/>
   <Description DefaultValue="在 Outlook 中使用 DeepSeek AI 生成智能回复"/>
-
-  <!-- Icons must be HTTPS and publicly accessible -->
   <IconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
   <SupportUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/"/>
-
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
-
   <Permissions>ReadWriteItem</Permissions>
-
   <Requirements>
     <Sets>
       <Set Name="Mailbox" MinVersion="1.3"/>
     </Sets>
   </Requirements>
 
-  <!-- Define resources used in VersionOverrides -->
   <Resources>
     <bt:Images>
-      <bt:Image id="Icon64" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
-      <bt:Image id="Icon128" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
+      <bt:Image id="DeepSeek_Icon64" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
+      <bt:Image id="DeepSeek_Icon128" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
     </bt:Images>
     <bt:Urls>
-      <bt:Url id="TaskpaneUrl" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
+      <bt:Url id="DeepSeek_TaskpaneUrl" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
     </bt:Urls>
     <bt:ShortStrings>
-      <bt:String id="GroupLabel" DefaultValue="AI 助手"/>
-      <bt:String id="ButtonLabel" DefaultValue="DeepSeek 回复"/>
-      <bt:String id="ButtonTooltip" DefaultValue="打开 DeepSeek 智能回复面板"/>
+      <bt:String id="DeepSeek_GroupLabel" DefaultValue="AI 助手"/>
+      <bt:String id="DeepSeek_ButtonLabel" DefaultValue="DeepSeek 回复"/>
+      <bt:String id="DeepSeek_ButtonTooltip" DefaultValue="打开 DeepSeek 智能回复面板"/>
     </bt:ShortStrings>
     <bt:LongStrings>
-      <bt:String id="AppDescription" DefaultValue="调用 DeepSeek 大模型，一键生成专业邮件回复。"/>
+      <bt:String id="DeepSeek_AppDescription" DefaultValue="调用 DeepSeek 大模型，一键生成专业邮件回复。"/>
     </bt:LongStrings>
   </Resources>
 
-  <!-- Modern UI integration for Outlook (Compose mode) -->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
-          <!-- Show button when composing a new message or reply -->
           <ExtensionPoint xsi:type="MessageComposeCommandSurface">
             <OfficeTab id="TabDefault">
-              <Group id="DeepSeekGroup" resid="GroupLabel">
-                <Control xsi:type="Button" id="DeepSeekComposeButton">
-                  <Label resid="ButtonLabel"/>
-                  <Tooltip resid="ButtonTooltip"/>
+              <Group id="DeepSeek_Group" resid="DeepSeek_GroupLabel">
+                <Control xsi:type="Button" id="DeepSeek_ComposeButton">
+                  <Label resid="DeepSeek_ButtonLabel"/>
+                  <Tooltip resid="DeepSeek_ButtonTooltip"/>
                   <Icon>
-                    <bt:Image size="16" resid="Icon64"/>
-                    <bt:Image size="32" resid="Icon64"/>
-                    <bt:Image size="64" resid="Icon128"/>
-                    <bt:Image size="80" resid="Icon128"/>
+                    <bt:Image size="16" resid="DeepSeek_Icon64"/>
+                    <bt:Image size="32" resid="DeepSeek_Icon64"/>
+                    <bt:Image size="64" resid="DeepSeek_Icon128"/>
+                    <bt:Image size="80" resid="DeepSeek_Icon128"/>
                   </Icon>
                   <Supertip>
-                    <Title resid="ButtonLabel"/>
-                    <Description resid="AppDescription"/>
+                    <Title resid="DeepSeek_ButtonLabel"/>
+                    <Description resid="DeepSeek_AppDescription"/>
                   </Supertip>
                   <Action xsi:type="ShowTaskpane">
-                    <TaskpaneId>DeepSeekTaskpane</TaskpaneId>
-                    <SourceLocation resid="TaskpaneUrl"/>
+                    <TaskpaneId>DeepSeek_Taskpane</TaskpaneId>
+                    <SourceLocation resid="DeepSeek_TaskpaneUrl"/>
                     <SupportsPinning>true</SupportsPinning>
                   </Action>
                 </Control>
@@ -87,5 +76,4 @@
       </Host>
     </Hosts>
   </VersionOverrides>
-
 </OfficeApp>
