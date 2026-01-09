@@ -6,7 +6,7 @@
   xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
   xsi:type="MailApp">
 
-  <!-- 唯一标识（已替换为新 GUID） -->
+  <!-- 唯一标识（可替换为你自己的 GUID） -->
   <Id>3f8b4e3b-1c1a-4e2f-96ae-2a01b8f6b8f9</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>DeepSeek Addin</ProviderName>
@@ -92,12 +92,8 @@
             </OfficeTab>
           </ExtensionPoint>
         </DesktopFormFactor>
-
-        <!-- 若需要在“阅读邮件”界面也显示按钮，可在此处另加 MessageReadCommandSurface 扩展点 -->
       </Host>
     </Hosts>
-
-    <!-- 与上保持一致的 API 要求 -->
     <Requirements>
       <Sets DefaultMinVersion="1.5">
         <Set Name="Mailbox"/>
