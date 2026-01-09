@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- manifest.xml -->
 <OfficeApp
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -6,44 +7,30 @@
   xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
   xsi:type="MailApp">
 
-  <!-- 唯一标识（可替换为你自己的 GUID） -->
   <Id>3f8b4e3b-1c1a-4e2f-96ae-2a01b8f6b8f9</Id>
   <Version>1.0.0.0</Version>
-  <ProviderName>DeepSeek Addin</ProviderName>
+  <ProviderName>sutoxu-ai</ProviderName>
   <DefaultLocale>zh-CN</DefaultLocale>
-  <DisplayName DefaultValue="DeepSeek 智能回复助手"/>
-  <Description DefaultValue="在 Outlook 中调用 DeepSeek 生成邮件回复"/>
 
-  <!-- 兼容旧式入口的图标（命令清单会通过资源 resid 引用） -->
+  <DisplayName DefaultValue="DeepSeek 智能助手"/>
+  <Description DefaultValue="在 Outlook 中使用 DeepSeek AI 生成智能回复"/>
+
   <IconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
   <SupportUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/"/>
 
-  <!-- 适用宿主 -->
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
 
-  <!-- API 要求（若旧版 Outlook 报版本不兼容，可临时改为 1.3 测试） -->
+  <Permissions>ReadWriteItem</Permissions>
+
   <Requirements>
-    <Sets DefaultMinVersion="1.5">
-      <Set Name="Mailbox"/>
+    <Sets>
+      <Set Name="Mailbox" MinVersion="1.3"/>
     </Sets>
   </Requirements>
 
-  <!-- 权限（企业租户可能需要管理员批准） -->
-  <Permissions>ReadWriteMailbox</Permissions>
-
-  <!-- 旧式 Taskpane 入口（保留以兼容） -->
-  <FormSettings>
-    <Form xsi:type="ItemCompose">
-      <DesktopSettings>
-        <SourceLocation DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
-      </DesktopSettings>
-    </Form>
-  </FormSettings>
-
-  <!-- 统一资源：图标、URL、文案（命令清单通过 resid 引用） -->
   <Resources>
     <bt:Images>
       <bt:Image id="Icon64" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
@@ -51,19 +38,17 @@
     </bt:Images>
     <bt:Urls>
       <bt:Url id="TaskpaneUrl" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
-      <bt:Url id="SupportUrl" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/"/>
     </bt:Urls>
     <bt:ShortStrings>
-      <bt:String id="GroupLabel" DefaultValue="DeepSeek"/>
+      <bt:String id="GroupLabel" DefaultValue="AI 助手"/>
       <bt:String id="ButtonLabel" DefaultValue="DeepSeek 回复"/>
-      <bt:String id="ButtonTooltip" DefaultValue="打开 DeepSeek 智能回复侧栏"/>
+      <bt:String id="ButtonTooltip" DefaultValue="打开 DeepSeek 智能回复面板"/>
     </bt:ShortStrings>
     <bt:LongStrings>
-      <bt:String id="AppDescription" DefaultValue="在 Outlook 中调用 DeepSeek 生成邮件回复"/>
+      <bt:String id="AppDescription" DefaultValue="调用 DeepSeek 大模型，一键生成专业邮件回复。"/>
     </bt:LongStrings>
   </Resources>
 
-  <!-- 命令清单：在撰写场景显示按钮，点击打开 Taskpane -->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
     <Hosts>
       <Host xsi:type="MailHost">
@@ -75,8 +60,10 @@
                   <Label resid="ButtonLabel"/>
                   <Tooltip resid="ButtonTooltip"/>
                   <Icon>
-                    <bt:Image id="Icon64"/>
-                    <bt:Image id="Icon128"/>
+                    <bt:Image size="16" resid="Icon64"/>
+                    <bt:Image size="32" resid="Icon64"/>
+                    <bt:Image size="64" resid="Icon128"/>
+                    <bt:Image size="80" resid="Icon128"/>
                   </Icon>
                   <Supertip>
                     <Title resid="ButtonLabel"/>
@@ -94,10 +81,5 @@
         </DesktopFormFactor>
       </Host>
     </Hosts>
-    <Requirements>
-      <Sets DefaultMinVersion="1.5">
-        <Set Name="Mailbox"/>
-      </Sets>
-    </Requirements>
   </VersionOverrides>
 </OfficeApp>
