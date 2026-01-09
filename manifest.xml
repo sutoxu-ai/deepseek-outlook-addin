@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- manifest.xml -->
+<!-- manifest.xml for DeepSeek Outlook Add-in -->
 <OfficeApp
   xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -7,6 +7,7 @@
   xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
   xsi:type="MailApp">
 
+  <!-- Unique ID (do not change unless necessary) -->
   <Id>3f8b4e3b-1c1a-4e2f-96ae-2a01b8f6b8f9</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>sutoxu-ai</ProviderName>
@@ -15,6 +16,7 @@
   <DisplayName DefaultValue="DeepSeek 智能助手"/>
   <Description DefaultValue="在 Outlook 中使用 DeepSeek AI 生成智能回复"/>
 
+  <!-- Icons must be HTTPS and publicly accessible -->
   <IconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
   <SupportUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/"/>
@@ -31,6 +33,7 @@
     </Sets>
   </Requirements>
 
+  <!-- Define resources used in VersionOverrides -->
   <Resources>
     <bt:Images>
       <bt:Image id="Icon64" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
@@ -49,37 +52,40 @@
     </bt:LongStrings>
   </Resources>
 
- <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
-  <Hosts>
-    <Host xsi:type="MailHost">
-      <DesktopFormFactor>
-        <ExtensionPoint xsi:type="MessageComposeCommandSurface">
-          <OfficeTab id="TabDefault">
-            <Group id="DeepSeekGroup" label="AI 助手">
-              <Control xsi:type="Button" id="DeepSeekComposeButton">
-                <Label resid="ButtonLabel"/>
-                <Tooltip resid="ButtonTooltip"/>
-                <Icon>
-                  <bt:Image size="16" resid="Icon64"/>
-                  <bt:Image size="32" resid="Icon64"/>
-                  <bt:Image size="64" resid="Icon128"/>
-                  <bt:Image size="80" resid="Icon128"/>
-                </Icon>
-                <Supertip>
-                  <Title resid="ButtonLabel"/>
-                  <Description resid="AppDescription"/>
-                </Supertip>
-                <Action xsi:type="ShowTaskpane">
-                  <TaskpaneId>DeepSeekTaskpane</TaskpaneId>
-                  <SourceLocation resid="TaskpaneUrl"/>
-                  <SupportsPinning>true</SupportsPinning>
-                </Action>
-              </Control>
-            </Group>
-          </OfficeTab>
-        </ExtensionPoint>
-      </DesktopFormFactor>
-    </Host>
-  </Hosts>
-</VersionOverrides>
+  <!-- Modern UI integration for Outlook (Compose mode) -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <!-- Show button when composing a new message or reply -->
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="DeepSeekGroup" label="GroupLabel">
+                <Control xsi:type="Button" id="DeepSeekComposeButton">
+                  <Label resid="ButtonLabel"/>
+                  <Tooltip resid="ButtonTooltip"/>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon64"/>
+                    <bt:Image size="32" resid="Icon64"/>
+                    <bt:Image size="64" resid="Icon128"/>
+                    <bt:Image size="80" resid="Icon128"/>
+                  </Icon>
+                  <Supertip>
+                    <Title resid="ButtonLabel"/>
+                    <Description resid="AppDescription"/>
+                  </Supertip>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DeepSeekTaskpane</TaskpaneId>
+                    <SourceLocation resid="TaskpaneUrl"/>
+                    <SupportsPinning>true</SupportsPinning>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+  </VersionOverrides>
+
 </OfficeApp>
