@@ -60,7 +60,7 @@
           <!-- Show button when composing a new message or reply -->
           <ExtensionPoint xsi:type="MessageComposeCommandSurface">
             <OfficeTab id="TabDefault">
-              <Group id="DeepSeekGroup" label="GroupLabel">
+              <Group id="DeepSeekGroup" resid="GroupLabel">
                 <Control xsi:type="Button" id="DeepSeekComposeButton">
                   <Label resid="ButtonLabel"/>
                   <Tooltip resid="ButtonTooltip"/>
