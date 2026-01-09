@@ -1,25 +1,41 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
-<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:type="MailApp">
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+  xsi:type="MailApp">
+
+  <!-- 基本信息 -->
   <Id>c6f19b4-6d9a-4c57-9a60-123456789abc</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>DeepSeek Addin</ProviderName>
   <DefaultLocale>zh-CN</DefaultLocale>
   <DisplayName DefaultValue="DeepSeek 智能回复助手"/>
   <Description DefaultValue="在 Outlook 中调用 DeepSeek 生成邮件回复"/>
+
+  <!-- 基本图标（旧式入口所需，可保留） -->
   <IconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
   <HighResolutionIconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
   <SupportUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/"/>
+
+  <!-- 适用宿主 -->
   <Hosts>
     <Host Name="Mailbox"/>
   </Hosts>
+
+  <!-- API 要求 -->
   <Requirements>
     <Sets DefaultMinVersion="1.5">
       <Set Name="Mailbox"/>
     </Sets>
   </Requirements>
+
+  <!-- 权限（企业租户可能需管理员允许） -->
   <Permissions>ReadWriteMailbox</Permissions>
+
+  <!-- 旧式 Taskpane 入口（保留以兼容部分环境） -->
   <FormSettings>
     <Form xsi:type="ItemCompose">
       <DesktopSettings>
@@ -27,4 +43,68 @@
       </DesktopSettings>
     </Form>
   </FormSettings>
+
+  <!-- 资源统一管理：图标、URL、文本 -->
+  <Resources>
+    <bt:Images>
+      <bt:Image id="Icon64" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
+      <bt:Image id="Icon128" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-128.png"/>
+    </bt:Images>
+    <bt:Urls>
+      <bt:Url id="TaskpaneUrl" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
+      <bt:Url id="SupportUrl" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/"/>
+    </bt:Urls>
+    <bt:ShortStrings>
+      <bt:String id="GroupLabel" DefaultValue="DeepSeek"/>
+      <bt:String id="ButtonLabel" DefaultValue="DeepSeek 回复"/>
+      <bt:String id="ButtonTooltip" DefaultValue="打开 DeepSeek 智能回复侧栏"/>
+    </bt:ShortStrings>
+    <bt:LongStrings>
+      <bt:String id="AppDescription" DefaultValue="在 Outlook 中调用 DeepSeek 生成邮件回复"/>
+    </bt:LongStrings>
+  </Resources>
+
+  <!-- 命令清单：工具栏按钮 + 侧栏 -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <!-- 工具栏：消息撰写界面 -->
+          <ExtensionPoint xsi:type="MessageComposeCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="DeepSeekGroup" label="GroupLabel">
+                <Control xsi:type="Button" id="DeepSeekComposeButton">
+                  <Label resid="ButtonLabel"/>
+                  <Tooltip resid="ButtonTooltip"/>
+                  <Icon>
+                    <bt:Image id="Icon64"/>
+                    <bt:Image id="Icon128"/>
+                  </Icon>
+                  <Supertip>
+                    <Title resid="ButtonLabel"/>
+                    <Description resid="AppDescription"/>
+                  </Supertip>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DeepSeekTaskpane</TaskpaneId>
+                    <SourceLocation resid="TaskpaneUrl"/>
+                    <SupportsPinning>true</SupportsPinning>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+
+        <!--（可选）移动端等其他外形的配置可后续补充 -->
+      </Host>
+    </Hosts>
+    <Resources>
+      <!-- 这里沿用上面的 <Resources> 引用（resid），无需重复定义 -->
+    </Resources>
+    <Requirements>
+      <Sets DefaultMinVersion="1.5">
+        <Set Name="Mailbox"/>
+      </Sets>
+    </Requirements>
+  </VersionOverrides>
 </OfficeApp>
