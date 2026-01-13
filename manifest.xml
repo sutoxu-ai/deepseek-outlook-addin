@@ -43,12 +43,13 @@
     </bt:LongStrings>
   </Resources>
 
+  <!-- ⚠️ 关键：必须有 VersionOverrides -->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0" Version="1.0">
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
 
-          <!-- ✅ 阅读邮件时显示 -->
+          <!-- ✅ 阅读邮件时显示（必须存在！） -->
           <ExtensionPoint xsi:type="MessageReadCommandSurface">
             <OfficeTab id="TabDefault">
               <Group id="DeepSeek_ReadGroup" resid="DeepSeek_GroupLabel">
