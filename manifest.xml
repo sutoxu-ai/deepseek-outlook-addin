@@ -47,9 +47,38 @@
     <Hosts>
       <Host xsi:type="MailHost">
         <DesktopFormFactor>
+
+          <!-- ✅ 阅读邮件时显示 -->
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="DeepSeek_ReadGroup" resid="DeepSeek_GroupLabel">
+                <Control xsi:type="Button" id="DeepSeek_ReadButton">
+                  <Label resid="DeepSeek_ButtonLabel"/>
+                  <Tooltip resid="DeepSeek_ButtonTooltip"/>
+                  <Icon>
+                    <bt:Image size="16" resid="DeepSeek_Icon64"/>
+                    <bt:Image size="32" resid="DeepSeek_Icon64"/>
+                    <bt:Image size="64" resid="DeepSeek_Icon128"/>
+                    <bt:Image size="80" resid="DeepSeek_Icon128"/>
+                  </Icon>
+                  <Supertip>
+                    <Title resid="DeepSeek_ButtonLabel"/>
+                    <Description resid="DeepSeek_AppDescription"/>
+                  </Supertip>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>DeepSeek_Taskpane</TaskpaneId>
+                    <SourceLocation resid="DeepSeek_TaskpaneUrl"/>
+                    <SupportsPinning>true</SupportsPinning>
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+
+          <!-- ✅ 撰写邮件时显示 -->
           <ExtensionPoint xsi:type="MessageComposeCommandSurface">
             <OfficeTab id="TabDefault">
-              <Group id="DeepSeek_Group" resid="DeepSeek_GroupLabel">
+              <Group id="DeepSeek_ComposeGroup" resid="DeepSeek_GroupLabel">
                 <Control xsi:type="Button" id="DeepSeek_ComposeButton">
                   <Label resid="DeepSeek_ButtonLabel"/>
                   <Tooltip resid="DeepSeek_ButtonTooltip"/>
@@ -72,6 +101,7 @@
               </Group>
             </OfficeTab>
           </ExtensionPoint>
+
         </DesktopFormFactor>
       </Host>
     </Hosts>
