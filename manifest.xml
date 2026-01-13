@@ -9,7 +9,7 @@
   <Id>3f8b4e3b-1c1a-4e2f-96ae-2a01b8f6b8f9</Id>
   <Version>1.0.0.0</Version>
   <ProviderName>sutoxu-ai</ProviderName>
-  <DefaultLocale>zh-CN</DefaultLocale>
+  <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="DeepSeek 智能助手"/>
   <Description DefaultValue="在 Outlook 中使用 DeepSeek AI 生成智能回复"/>
   <IconUrl DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/icon-64.png"/>
