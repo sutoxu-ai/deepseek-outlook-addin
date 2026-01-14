@@ -31,7 +31,7 @@
       <bt:Image id="icon64" DefaultValue="https://via.placeholder.com/64"/>
     </bt:Images>
     <bt:Urls>
-      <bt:Url id="taskpane" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/install-test.html"/>
+      <bt:Url id="taskpane" DefaultValue="https://sutoxu-ai.github.io/deepseek-outlook-addin/index.html"/>
     </bt:Urls>
     <bt:ShortStrings>
       <bt:String id="label" DefaultValue="Test"/>
